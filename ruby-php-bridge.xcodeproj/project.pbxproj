@@ -1,0 +1,205 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		01DDFD5613EA22980088F771 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 01DDFD5513EA22980088F771 /* main.c */; };
+		01DDFD5813EA22980088F771 /* ruby_php_bridge.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 01DDFD5713EA22980088F771 /* ruby_php_bridge.1 */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		01DDFD4F13EA22970088F771 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				01DDFD5813EA22980088F771 /* ruby_php_bridge.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		01DDFD5113EA22980088F771 /* ruby-php-bridge */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "ruby-php-bridge"; sourceTree = BUILT_PRODUCTS_DIR; };
+		01DDFD5513EA22980088F771 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		01DDFD5713EA22980088F771 /* ruby_php_bridge.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ruby_php_bridge.1; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		01DDFD4E13EA22970088F771 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		01DDFD4613EA22970088F771 = {
+			isa = PBXGroup;
+			children = (
+				01DDFD5413EA22980088F771 /* ruby-php-bridge */,
+				01DDFD5213EA22980088F771 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		01DDFD5213EA22980088F771 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				01DDFD5113EA22980088F771 /* ruby-php-bridge */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		01DDFD5413EA22980088F771 /* ruby-php-bridge */ = {
+			isa = PBXGroup;
+			children = (
+				01DDFD5513EA22980088F771 /* main.c */,
+				01DDFD5713EA22980088F771 /* ruby_php_bridge.1 */,
+			);
+			path = "ruby-php-bridge";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		01DDFD5013EA22970088F771 /* ruby-php-bridge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 01DDFD5B13EA22980088F771 /* Build configuration list for PBXNativeTarget "ruby-php-bridge" */;
+			buildPhases = (
+				01DDFD4D13EA22970088F771 /* Sources */,
+				01DDFD4E13EA22970088F771 /* Frameworks */,
+				01DDFD4F13EA22970088F771 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ruby-php-bridge";
+			productName = "ruby-php-bridge";
+			productReference = 01DDFD5113EA22980088F771 /* ruby-php-bridge */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		01DDFD4813EA22970088F771 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 01DDFD4B13EA22970088F771 /* Build configuration list for PBXProject "ruby-php-bridge" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 01DDFD4613EA22970088F771;
+			productRefGroup = 01DDFD5213EA22980088F771 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				01DDFD5013EA22970088F771 /* ruby-php-bridge */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		01DDFD4D13EA22970088F771 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				01DDFD5613EA22980088F771 /* main.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		01DDFD5913EA22980088F771 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		01DDFD5A13EA22980088F771 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		01DDFD5C13EA22980088F771 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		01DDFD5D13EA22980088F771 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		01DDFD4B13EA22970088F771 /* Build configuration list for PBXProject "ruby-php-bridge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01DDFD5913EA22980088F771 /* Debug */,
+				01DDFD5A13EA22980088F771 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		01DDFD5B13EA22980088F771 /* Build configuration list for PBXNativeTarget "ruby-php-bridge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				01DDFD5C13EA22980088F771 /* Debug */,
+				01DDFD5D13EA22980088F771 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 01DDFD4813EA22970088F771 /* Project object */;
+}
