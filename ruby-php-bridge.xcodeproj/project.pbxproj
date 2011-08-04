@@ -7,11 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01DDFD5613EA22980088F771 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 01DDFD5513EA22980088F771 /* main.c */; };
+		0183A25D13EA34CC00EEE58C /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 0183A25813EA34CC00EEE58C /* main.c */; };
+		0183A26713EA3E3800EEE58C /* test.rb in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0183A26413EA3D9600EEE58C /* test.rb */; };
+		0183A29213EA4D3A00EEE58C /* php_helpers.c in Sources */ = {isa = PBXBuildFile; fileRef = 0183A25913EA34CC00EEE58C /* php_helpers.c */; };
+		0183A29313EA4D3A00EEE58C /* ruby_bridge.c in Sources */ = {isa = PBXBuildFile; fileRef = 0183A25B13EA34CC00EEE58C /* ruby_bridge.c */; };
+		01D6D1E513EAB59A003B396F /* Ruby.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D6D1E413EAB59A003B396F /* Ruby.framework */; };
+		01D6D1EB13EAB7E8003B396F /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D6D1EA13EAB7E8003B396F /* libiconv.dylib */; };
+		01D6D1EF13EABAED003B396F /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 01D6D1EE13EABAED003B396F /* libresolv.dylib */; };
+		01D6D1F013EAC25D003B396F /* type_helpers.c in Sources */ = {isa = PBXBuildFile; fileRef = 0183A26113EA3B9100EEE58C /* type_helpers.c */; };
 		01DDFD5813EA22980088F771 /* ruby_php_bridge.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 01DDFD5713EA22980088F771 /* ruby_php_bridge.1 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		0183A26613EA3E2E00EEE58C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				0183A26713EA3E3800EEE58C /* test.rb in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		01DDFD4F13EA22970088F771 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -25,8 +42,22 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0183A25813EA34CC00EEE58C /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		0183A25913EA34CC00EEE58C /* php_helpers.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = php_helpers.c; sourceTree = "<group>"; };
+		0183A25A13EA34CC00EEE58C /* php_helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = php_helpers.h; sourceTree = "<group>"; };
+		0183A25B13EA34CC00EEE58C /* ruby_bridge.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ruby_bridge.c; sourceTree = "<group>"; };
+		0183A25C13EA34CC00EEE58C /* ruby_bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ruby_bridge.h; sourceTree = "<group>"; };
+		0183A26013EA3B8400EEE58C /* type_helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = type_helpers.h; sourceTree = "<group>"; };
+		0183A26113EA3B9100EEE58C /* type_helpers.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = type_helpers.c; sourceTree = "<group>"; };
+		0183A26413EA3D9600EEE58C /* test.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; name = test.rb; path = ruby/test.rb; sourceTree = "<group>"; };
+		0183A29713EA5FE000EEE58C /* Ruby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ruby.framework; path = System/Library/Frameworks/Ruby.framework; sourceTree = SDKROOT; };
+		01D6D1E413EAB59A003B396F /* Ruby.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Ruby.framework; path = System/Library/Frameworks/Ruby.framework; sourceTree = SDKROOT; };
+		01D6D1E613EAB776003B396F /* libiconv.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.dylib; path = ../../../../opt/local/lib/libiconv.2.dylib; sourceTree = "<group>"; };
+		01D6D1E813EAB7B2003B396F /* libiconv.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.2.dylib; path = usr/lib/libiconv.2.dylib; sourceTree = SDKROOT; };
+		01D6D1EA13EAB7E8003B396F /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
+		01D6D1EC13EABAC8003B396F /* libdnsinfo.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libdnsinfo.dylib; path = usr/lib/system/libdnsinfo.dylib; sourceTree = SDKROOT; };
+		01D6D1EE13EABAED003B396F /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
 		01DDFD5113EA22980088F771 /* ruby-php-bridge */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "ruby-php-bridge"; sourceTree = BUILT_PRODUCTS_DIR; };
-		01DDFD5513EA22980088F771 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		01DDFD5713EA22980088F771 /* ruby_php_bridge.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = ruby_php_bridge.1; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -35,15 +66,55 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01D6D1EF13EABAED003B396F /* libresolv.dylib in Frameworks */,
+				01D6D1EB13EAB7E8003B396F /* libiconv.dylib in Frameworks */,
+				01D6D1E513EAB59A003B396F /* Ruby.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0183A25613EA34CC00EEE58C /* ext */ = {
+			isa = PBXGroup;
+			children = (
+				0183A25713EA34CC00EEE58C /* ruby_php_bridge */,
+			);
+			path = ext;
+			sourceTree = "<group>";
+		};
+		0183A25713EA34CC00EEE58C /* ruby_php_bridge */ = {
+			isa = PBXGroup;
+			children = (
+				0183A25813EA34CC00EEE58C /* main.c */,
+				0183A25913EA34CC00EEE58C /* php_helpers.c */,
+				0183A25A13EA34CC00EEE58C /* php_helpers.h */,
+				0183A25B13EA34CC00EEE58C /* ruby_bridge.c */,
+				0183A25C13EA34CC00EEE58C /* ruby_bridge.h */,
+				0183A26013EA3B8400EEE58C /* type_helpers.h */,
+				0183A26113EA3B9100EEE58C /* type_helpers.c */,
+			);
+			path = ruby_php_bridge;
+			sourceTree = "<group>";
+		};
+		0183A26313EA3D8100EEE58C /* ruby */ = {
+			isa = PBXGroup;
+			children = (
+				0183A26413EA3D9600EEE58C /* test.rb */,
+			);
+			name = ruby;
+			sourceTree = "<group>";
+		};
 		01DDFD4613EA22970088F771 = {
 			isa = PBXGroup;
 			children = (
+				01D6D1EE13EABAED003B396F /* libresolv.dylib */,
+				01D6D1EC13EABAC8003B396F /* libdnsinfo.dylib */,
+				01D6D1EA13EAB7E8003B396F /* libiconv.dylib */,
+				01D6D1E813EAB7B2003B396F /* libiconv.2.dylib */,
+				01D6D1E613EAB776003B396F /* libiconv.2.dylib */,
+				01D6D1E413EAB59A003B396F /* Ruby.framework */,
+				0183A29713EA5FE000EEE58C /* Ruby.framework */,
 				01DDFD5413EA22980088F771 /* ruby-php-bridge */,
 				01DDFD5213EA22980088F771 /* Products */,
 			);
@@ -60,7 +131,8 @@
 		01DDFD5413EA22980088F771 /* ruby-php-bridge */ = {
 			isa = PBXGroup;
 			children = (
-				01DDFD5513EA22980088F771 /* main.c */,
+				0183A26313EA3D8100EEE58C /* ruby */,
+				0183A25613EA34CC00EEE58C /* ext */,
 				01DDFD5713EA22980088F771 /* ruby_php_bridge.1 */,
 			);
 			path = "ruby-php-bridge";
@@ -76,6 +148,7 @@
 				01DDFD4D13EA22970088F771 /* Sources */,
 				01DDFD4E13EA22970088F771 /* Frameworks */,
 				01DDFD4F13EA22970088F771 /* CopyFiles */,
+				0183A26613EA3E2E00EEE58C /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -113,7 +186,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01DDFD5613EA22980088F771 /* main.c in Sources */,
+				01D6D1F013EAC25D003B396F /* type_helpers.c in Sources */,
+				0183A25D13EA34CC00EEE58C /* main.c in Sources */,
+				0183A29213EA4D3A00EEE58C /* php_helpers.c in Sources */,
+				0183A29313EA4D3A00EEE58C /* ruby_bridge.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,7 +200,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -140,6 +216,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/opt/custom/ruby/include/ruby-1.9.1/**";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -150,7 +227,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -160,6 +237,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "/opt/custom/ruby/include/ruby-1.9.1/**";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				SDKROOT = macosx;
 			};
@@ -168,6 +246,19 @@
 		01DDFD5C13EA22980088F771 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = "/opt/custom/php/include/php/**";
+				LIBRARY_SEARCH_PATHS = (
+					/opt/local/lib,
+					/opt/custom/ruby/lib,
+					"/opt/custom/php-dylib/lib/",
+					"\"$(SDKROOT)/usr/lib/system\"",
+				);
+				OTHER_LDFLAGS = (
+					"-lphp5",
+					"-lxml2",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -175,6 +266,19 @@
 		01DDFD5D13EA22980088F771 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = "/opt/custom/php/include/php/**";
+				LIBRARY_SEARCH_PATHS = (
+					/opt/local/lib,
+					/opt/custom/ruby/lib,
+					"/opt/custom/php-dylib/lib/",
+					"\"$(SDKROOT)/usr/lib/system\"",
+				);
+				OTHER_LDFLAGS = (
+					"-lphp5",
+					"-lxml2",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -198,6 +302,7 @@
 				01DDFD5D13EA22980088F771 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

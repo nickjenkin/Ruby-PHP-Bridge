@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>ruby-foo.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+		<key>ruby-php-bridge-so.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
+		<key>ruby-php-bridge.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+		<key>ruby_php_bridge.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
+		<key>test.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>0183A24A13EA33D500EEE58C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0183A26B13EA490900EEE58C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0183A27A13EA4A4E00EEE58C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>01DDFD5013EA22970088F771</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>01DEA23E13EA842100952CF1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
