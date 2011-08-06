@@ -1,10 +1,19 @@
-//
-//  ruby_bridge.h
-//  ruby-php-bridge
-//
-//  Created by Nick Jenkin on 4/08/11.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
-//
+/*
+ *
+ * Copyright 2011 Nick Jenkin
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 #ifndef ruby_php_bridge_ruby_bridge_h
 #define ruby_php_bridge_ruby_bridge_h
@@ -20,12 +29,14 @@
 #include "type_helpers.h"
 
 
-RBT bridge_module;
+VALUE bridge_module;
+VALUE php_exception;
+
 
 void Init_ruby_php_bridge();
 static VALUE ruby_hello_world(VALUE module);
 static VALUE rpb_method_missing(int argc, VALUE *argv, VALUE self);
-static VALUE p2r_string(zval* val);
+static VALUE rpb_eval(int argc, VALUE *argv, VALUE self);
 
 
 #endif

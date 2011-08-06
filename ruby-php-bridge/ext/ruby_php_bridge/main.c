@@ -12,10 +12,6 @@
 int main (int argc, const char * argv[])
 {
 
-    // insert code here...
-    printf("Hello, World!\n");
-    
-    
     ruby_init();
 
     Init_ruby_php_bridge();
