@@ -19,7 +19,17 @@
 #define ruby_php_bridge_type_helpers_h
 
 #include <Ruby/ruby.h>
+#include <Ruby/intern.h>
+#include <Ruby/st.h>
 #include "php_helpers.h"
+
+typedef struct resource_data {
+    zval* resource;
+} PHPResource;
+
+typedef struct php_object_data {
+    zval* obj;
+} PHPObjectData;
 
 VALUE p2r_string(zval* val);
 VALUE p2r_int(zval* val);
@@ -30,6 +40,7 @@ VALUE p2r_double(zval* val);
 VALUE p2r_array(zval* val);
 VALUE p2r_object(zval* val);
 VALUE p2r_resource(zval* val);
+VALUE p2r_hashtable(zval* val);
 
 
 zval* r2p_int(VALUE val);
@@ -40,8 +51,10 @@ zval* r2p_long(VALUE val);
 zval* r2p_double(VALUE val);
 zval* r2p_array(VALUE val);
 zval* r2p_object(VALUE val);
+zval* r2p_data(VALUE val);
 zval* r2p_resource(VALUE val);
-
+zval* r2p_hashtable(VALUE val);
+zval* r2p_range(VALUE val);
 
 VALUE p2r_convert(zval* val);
 zval* r2p_convert(VALUE val);

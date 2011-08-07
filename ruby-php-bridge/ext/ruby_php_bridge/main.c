@@ -20,6 +20,7 @@ int main (int argc, const char * argv[])
     rb_load_file("test.rb");
     ruby_run();
     
+    printf("\n");
     return 0;
     
     

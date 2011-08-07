@@ -36,9 +36,33 @@
 zval* rpb_zval_string(char* str) {
     zval *new_string;
     
-    ALLOC_INIT_ZVAL(new_string);
+    MAKE_STD_ZVAL(new_string);
     ZVAL_STRING(new_string, str, 1);
     
     return new_string;
 }
- 
+
+zval* rpb_zval_null() {
+    zval *res;
+    MAKE_STD_ZVAL(res);
+    ZVAL_NULL(res);
+    return res;
+}
+
+void rpb_global_var_set(char* name, zval* value) {
+    
+    zend_hash_add(&EG(symbol_table), name, strlen(name) + 1, &value, sizeof(zval*), NULL);
+
+}
+
+zval* rpb_global_var_get(char* name) {
+    
+    zval **value;
+    if (zend_hash_find(&EG(symbol_table), name, strlen(name) + 1, (void**)&value) == FAILURE) {
+        return rpb_zval_null();
+    }
+    
+    return *value;
+}
+
+

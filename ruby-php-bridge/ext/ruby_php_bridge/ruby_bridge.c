@@ -17,6 +17,7 @@
 
 #include "ruby_bridge.h"
 #include <stdio.h>
+#include <string.h>
 
 void Init_ruby_php_bridge() {
     
@@ -24,15 +25,23 @@ void Init_ruby_php_bridge() {
     static char* argv[] = {"ruby_php_bridge"};
     php_embed_init(1, argv PTSRMLS_CC);
     
-    bridge_module = rb_define_class("PHP", rb_cObject);
-    //bridge_module = rb_define_module("PHP");
-  //  rb_include_module(bridge_module);
+    //bridge_module = rb_define_class("PHP", rb_cObject);
+    bridge_module = rb_define_module("PHP");
+
     php_exception = rb_define_class("PHPBridgeException", rb_eScriptError);
+    
+    var_class = rb_define_class_under(bridge_module, "PHPGlobalVariableBridge", rb_cObject);
+    php_resource = rb_define_class_under(bridge_module, "PHPBridgeResourceObject", rb_cObject);
+    php_object = rb_define_class_under(bridge_module, "PHPBridgeObject", rb_cObject);
 
     
     rb_define_singleton_method(bridge_module, "hello", ruby_hello_world, 0);
     rb_define_singleton_method(bridge_module, "method_missing", rpb_method_missing, -1);
-    rb_define_singleton_method(bridge_module, "eval", rpb_eval, -1);
+    rb_define_singleton_method(bridge_module, "eval", rpb_eval, 1);
+    rb_define_singleton_method(bridge_module, "include", rpb_include, 1);
+    rb_define_singleton_method(var_class, "method_missing", rpb_var_bridge, -1);
+    rb_define_singleton_method(bridge_module, "var", rpb_var, 0);
+
 
     
 }
@@ -43,7 +52,7 @@ static VALUE rpb_method_missing(int argc, VALUE *argv, VALUE self) {
     rb_scan_args(argc, argv, "1*", &r_name, &args);
     char* name = (char*)rb_id2name(SYM2ID(r_name)); 
     
-    
+    printf("PHP.%s(%d)\n", name, argc-1);
     zval* funcname = rpb_zval_string(name);
     
     zval* retval;
@@ -71,26 +80,90 @@ static VALUE rpb_method_missing(int argc, VALUE *argv, VALUE self) {
     
     zend_call_function(&fci, &fcc TSRMLS_CC);
     
+    
+
+    
+    // clean up
     for (int i = 0; i < fci.param_count; i++) {
-        zval_ptr_dtor(params[i]);
+   //     zval_ptr_dtor(params[i]);
         efree(params[i]);
     }
     
     efree(params);
+    zval_ptr_dtor(&funcname);
     
-    VALUE result = p2r_convert(retval);
+    VALUE result = Qnil;
     
     if(retval) {
-        zval_ptr_dtor(&retval);
+        result = p2r_convert(retval);
+        
+        if(Z_TYPE_P(retval) != IS_RESOURCE) {
+            zval_ptr_dtor(&retval);
+        }
     }
     return result;
 
 }
 
-static VALUE rpb_eval(int argc, VALUE *argv, VALUE self) {
+static VALUE rpb_eval(VALUE class, VALUE code) {
+
+    
+    Check_Type(code, T_STRING);
+    char* ccode = StringValueCStr(code);
+    zval retval;
+
+    
+    if (zend_eval_string_ex(ccode, &retval, "Ruby.PHP.eval", 1) == FAILURE) {
+        //zend_throw_exception(NULL, "eval_stmt() from Ruby failed", 0);
+        return Qnil;
+    }
+    
+    VALUE res = Qnil;
     
     
+    res = p2r_convert(&retval);
+    zval_dtor(&retval);
+
     
+    return res;
+}
+
+
+static VALUE rpb_include(VALUE mod, VALUE filename) {
+    return Qnil;
+}
+
+static VALUE rpb_var_bridge(int argc, VALUE *argv, VALUE self) {
+    
+    VALUE r_name, value;
+    rb_scan_args(argc, argv, "11", &r_name, &value);
+    char* name = (char*)rb_id2name(SYM2ID(r_name)); 
+
+    
+    
+    if(strrchr(name, '=') != NULL) {
+        char *varname = (char*) malloc(strlen(name)-1);
+        strncpy(varname, name, strlen(name)-1);
+        
+        rpb_global_var_set(varname, r2p_convert(value));
+        
+        free(varname);
+    }
+    else {
+
+        zval* val = rpb_global_var_get(name);
+        return p2r_convert(val);
+    
+    }
+    
+    
+    return Qnil;
+}
+
+
+
+static VALUE rpb_var(VALUE mod) {
+    return var_class;
 }
 
 static VALUE ruby_hello_world(VALUE module) {

@@ -31,12 +31,16 @@
 
 VALUE bridge_module;
 VALUE php_exception;
-
+VALUE php_resource;
+VALUE php_object;
+VALUE var_class;
 
 void Init_ruby_php_bridge();
 static VALUE ruby_hello_world(VALUE module);
 static VALUE rpb_method_missing(int argc, VALUE *argv, VALUE self);
-static VALUE rpb_eval(int argc, VALUE *argv, VALUE self);
-
+static VALUE rpb_eval(VALUE class, VALUE code);
+static VALUE rpb_include(VALUE mod, VALUE filename);
+static VALUE rpb_var_bridge(int argc, VALUE *argv, VALUE self);
+static VALUE rpb_var(VALUE mod);
 
 #endif
