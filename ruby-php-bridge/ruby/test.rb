@@ -52,3 +52,5 @@ PHP.eval("$faz = new Exception('pancakes');");
 puts PHP.var.faz.getMessage()
 
 puts "\nend\n"
+
+ 

@@ -25,24 +25,32 @@ void Init_ruby_php_bridge() {
     static char* argv[] = {"ruby_php_bridge"};
     php_embed_init(1, argv PTSRMLS_CC);
     
-    //bridge_module = rb_define_class("PHP", rb_cObject);
+    
     bridge_module = rb_define_module("PHP");
 
+    
+    /* exceptions */
     php_exception = rb_define_class("PHPBridgeException", rb_eScriptError);
     
+    /* classes */
     var_class = rb_define_class_under(bridge_module, "PHPGlobalVariableBridge", rb_cObject);
     php_resource = rb_define_class_under(bridge_module, "PHPBridgeResourceObject", rb_cObject);
     php_object = rb_define_class_under(bridge_module, "PHPBridgeObject", rb_cObject);
 
     
-    rb_define_singleton_method(bridge_module, "hello", ruby_hello_world, 0);
+    /* function/method accessors */
     rb_define_singleton_method(bridge_module, "method_missing", rpb_method_missing, -1);
-    rb_define_singleton_method(bridge_module, "eval", rpb_eval, 1);
-    rb_define_singleton_method(bridge_module, "include", rpb_include, 1);
-    rb_define_singleton_method(var_class, "method_missing", rpb_var_bridge, -1);
-    rb_define_singleton_method(bridge_module, "var", rpb_var, 0);
     rb_define_method(php_object, "method_missing", rpb_object_method, -1);
     
+    /* language construct implementations */
+    rb_define_singleton_method(bridge_module, "eval", rpb_eval, 1);
+    rb_define_singleton_method(bridge_module, "include", rpb_include, 1);
+    
+    /* variable/type accessors */
+    rb_define_singleton_method(bridge_module, "var", rpb_var, 0);
+    rb_define_singleton_method(var_class, "method_missing", rpb_var_bridge, -1);
+
+
     
 }
 
@@ -237,10 +245,4 @@ static VALUE rpb_var(VALUE mod) {
     return var_class;
 }
 
-static VALUE ruby_hello_world(VALUE module) {
-    
-    printf("Hello World!\n");
-    
-    return T_NIL;
-}
 
