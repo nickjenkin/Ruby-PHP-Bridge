@@ -43,4 +43,7 @@ static VALUE rpb_include(VALUE mod, VALUE filename);
 static VALUE rpb_var_bridge(int argc, VALUE *argv, VALUE self);
 static VALUE rpb_var(VALUE mod);
 
+static VALUE rpb_object_method(int argc, VALUE *argv, VALUE self);
+
+
 #endif

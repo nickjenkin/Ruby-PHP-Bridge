@@ -66,3 +66,27 @@ zval* rpb_global_var_get(char* name) {
 }
 
 
+void rpb_print_hashtable(HashTable *arr_hash) {
+    HashPosition pointer;
+
+        char *str_key;
+    uint key_len;
+    ulong int_key;
+    zval **data;
+    
+    for(zend_hash_internal_pointer_reset_ex(arr_hash, &pointer); zend_hash_get_current_data_ex(arr_hash, (void**) &data, &pointer) == SUCCESS; zend_hash_move_forward_ex(arr_hash, &pointer)) {
+        
+
+        zend_hash_get_current_key_ex(arr_hash, &str_key, &key_len, &int_key,0, &pointer);
+        if(zend_hash_get_current_key_type_ex(arr_hash, &pointer) == IS_STRING) {
+            zend_print_pval_r(data,0);
+        }
+        else {
+            zend_print_pval_r(data,0);
+        }
+        
+        
+        
+    }
+
+}

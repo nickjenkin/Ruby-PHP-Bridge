@@ -95,6 +95,12 @@ VALUE p2r_object(zval* val) {
 
 VALUE p2r_convert(zval* val) {
     VALUE res;
+    
+    if(val == NULL) {
+        return Qnil;
+    }
+    
+    
   //  printf("type: %d\n", Z_TYPE_P(val));
   //  return Qnil;
     switch (Z_TYPE_P(val)) {
@@ -257,6 +263,11 @@ zval* r2p_data(VALUE val) {
 
 zval* r2p_convert(VALUE val) {
     zval* res;
+    
+    
+    if(val == NULL) {
+        return NULL;
+    }
     
     switch (TYPE(val)) {
         case T_FIXNUM:

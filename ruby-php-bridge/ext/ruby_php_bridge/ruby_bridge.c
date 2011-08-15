@@ -41,8 +41,8 @@ void Init_ruby_php_bridge() {
     rb_define_singleton_method(bridge_module, "include", rpb_include, 1);
     rb_define_singleton_method(var_class, "method_missing", rpb_var_bridge, -1);
     rb_define_singleton_method(bridge_module, "var", rpb_var, 0);
-
-
+    rb_define_method(php_object, "method_missing", rpb_object_method, -1);
+    
     
 }
 
@@ -159,8 +159,40 @@ static VALUE rpb_var_bridge(int argc, VALUE *argv, VALUE self) {
     
     return Qnil;
 }
-
-
+/*ZEND_API zval* zend_call_method(zval **object_pp, zend_class_entry *obj_ce, zend_function **fn_proxy, char *function_name, int function_name_len, zval **retval_ptr_ptr, int param_count, zval* arg1, zval* arg2 TSRMLS_DC);
+*/
+static VALUE rpb_object_method(int argc, VALUE *argv, VALUE self) {
+    
+    
+    zval* obj = r2p_data(self);
+    
+    VALUE rname, rarg1, rarg2;
+    rb_scan_args(argc, argv, "12", &rname, &rarg1, &rarg2);
+    
+    char* method_name = (char*)rb_id2name(SYM2ID(rname)); 
+    
+    zval *zarg1, *zarg2, *retval;
+    
+    zarg1 = r2p_convert(rarg1);
+    zarg2 = r2p_convert(rarg2);
+    
+    
+   // zend_class_entry* ce = Z_OBJ_HT(*obj)->get_class_entry;
+    zend_class_entry *ce = Z_OBJCE(*obj);
+    
+    
+    
+    printf("%s.%s\n", ce->name, method_name);
+    
+    
+    
+    
+    zend_call_method(&obj, ce, NULL, method_name, sizeof(method_name)-1, &retval, 2, zarg1, zarg2);
+    
+    
+    
+    return p2r_convert(retval);
+}
 
 static VALUE rpb_var(VALUE mod) {
     return var_class;

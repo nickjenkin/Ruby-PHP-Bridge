@@ -21,31 +21,35 @@
 #PHP.var.bar = "PHP.var.bar";
 
 
-puts PHP.var.bar
+#puts PHP.var.bar
 
-PHP.eval("print_r($bar);");
+#PHP.eval("print_r($bar);");
 
-puts (1..10).class
+#puts (1..10).class
 
-PHP.var.hash = {2 => "sdf", "A"=>"1", "B" => {"nested" => "woo"}, "array" => [2,55,67], "nil" => nil}
-PHP.eval("print_r($hash)")
+#PHP.var.hash = {2 => "sdf", "A"=>"1", "B" => {"nested" => "woo"}, "array" => [2,55,67], "nil" => nil}
+#PHP.eval("print_r($hash)")
 
     #PHP.print_r({2 => "sdf", "A"=>"1", "B" => {"nested" => "woo"}, "array" => [2,55,67], "nil" => nil})
 
     #PHP.print_r([1,2,3,4,5])
     
-    puts PHP.explode(",", "foo,bar,baz").inspect
+#   puts PHP.explode(",", "foo,bar,baz").inspect
     
     
-puts PHP.fopen("test.rb", "r").inspect 
-    PHP.eval("$faz = new Exception();");
-    #puts PHP.var.cool.inspect
-    puts PHP.var.faz.inspect
-fp = PHP.fopen("test.rb", "r")
-PHP.print_r(PHP.var.faz)
-puts PHP.fgets(fp)
-PHP.fclose(fp)
+#puts PHP.fopen("test.rb", "r").inspect 
 
- PHP.print_r(1..10)
+#puts PHP.var.cool.inspect
+#    puts PHP.var.faz.inspect
+#fp = PHP.fopen("test.rb", "r")
+#PHP.print_r(PHP.var.faz)
+#puts PHP.fgets(fp)
+#PHP.fclose(fp)
 
+# PHP.print_r(1..10)
+
+PHP.eval("$faz = new Exception('pancakes');");
+puts PHP.var.faz.inspect
+puts PHP.var.faz.getMessage("hello", 2)
+    
 puts "\nend\n"
