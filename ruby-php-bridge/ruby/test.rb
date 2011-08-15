@@ -49,7 +49,6 @@
 # PHP.print_r(1..10)
 
 PHP.eval("$faz = new Exception('pancakes');");
-puts PHP.var.faz.inspect
-puts PHP.var.faz.getMessage("hello", 2)
-    
+puts PHP.var.faz.getMessage()
+
 puts "\nend\n"

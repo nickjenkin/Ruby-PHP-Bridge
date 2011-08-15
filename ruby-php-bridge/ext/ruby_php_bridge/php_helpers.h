@@ -29,5 +29,6 @@ void rpb_global_var_set(char* name, zval* value);
 zval* rpb_zval_null();
 zval* rpb_global_var_get(char* name);
 void rpb_print_hashtable(HashTable *arr_hash);
+void rpb_lower(char* str);
 
 #endif

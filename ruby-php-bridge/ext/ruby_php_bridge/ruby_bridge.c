@@ -166,30 +166,69 @@ static VALUE rpb_object_method(int argc, VALUE *argv, VALUE self) {
     
     zval* obj = r2p_data(self);
     
-    VALUE rname, rarg1, rarg2;
-    rb_scan_args(argc, argv, "12", &rname, &rarg1, &rarg2);
+    VALUE rname, args;
+    rb_scan_args(argc, argv, "1*", &rname, &args);
     
-    char* method_name = (char*)rb_id2name(SYM2ID(rname)); 
+    char* method_name = (char*)rb_id2name(SYM2ID(rname));
+    rpb_lower(method_name);
     
-    zval *zarg1, *zarg2, *retval;
+    zval* z_method_name = rpb_zval_string(method_name);
     
-    zarg1 = r2p_convert(rarg1);
-    zarg2 = r2p_convert(rarg2);
-    
+    zval *retval;
     
    // zend_class_entry* ce = Z_OBJ_HT(*obj)->get_class_entry;
     zend_class_entry *ce = Z_OBJCE(*obj);
     
     
-    
-    printf("%s.%s\n", ce->name, method_name);
-    
+    //printf("%s.%s\n", ce->name, method_name);
     
     
+    zend_fcall_info fci = empty_fcall_info;
+    zend_fcall_info_cache fcc = empty_fcall_info_cache;
     
-    zend_call_method(&obj, ce, NULL, method_name, sizeof(method_name)-1, &retval, 2, zarg1, zarg2);
     
+    fci.size = sizeof(fci);
+    fci.function_table = &ce->function_table;
     
+    fcc.initialized = 1;
+    fcc.calling_scope = ce;
+    fcc.called_scope = Z_OBJCE_PP(&obj);
+    fcc.object_ptr = obj;
+    
+    fci.param_count = argc-1;
+    
+    zval ***params = ecalloc(fci.param_count, sizeof(zval **));
+    
+    for(int i=1; i < argc; i++) {
+        
+        zval *pzval = r2p_convert(argv[i]);
+        
+        params[i-1] = emalloc(sizeof(zval *));
+        *params[i-1] = pzval;
+        
+    }
+    
+    fci.params = params;
+    fci.function_name = z_method_name;
+    fci.retval_ptr_ptr = &retval;
+    fci.no_separation = 1;
+    fci.symbol_table = NULL;
+    //zend_print_pval(fci.function_name,0);
+    //rpb_print_hashtable(fci.function_table);
+    
+    if(zend_hash_find(fci.function_table, method_name, strlen(method_name)+1, (void **) &fcc.function_handler) == FAILURE) {
+        rb_raise(php_exception, "Unable to find implementation for method %s::%s", ce->name, method_name);
+        
+    }
+    
+    int result = zend_call_function(&fci, &fcc TSRMLS_CC);
+
+    if (result == FAILURE) {
+   //     printf("failure\n");  
+        rb_raise(php_exception, "Unable to call method %s::%s", ce->name, method_name);
+    }
+        
+    efree(params);
     
     return p2r_convert(retval);
 }
