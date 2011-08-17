@@ -121,8 +121,9 @@ static VALUE rpb_eval(VALUE class, VALUE code) {
     zval retval;
 
     
-    if (zend_eval_string_ex(ccode, &retval, "Ruby.PHP.eval", 1) == FAILURE) {
-        //zend_throw_exception(NULL, "eval_stmt() from Ruby failed", 0);
+    if (zend_eval_string_ex(ccode, &retval, "Ruby.PHP.eval", 1) == FAILURE) {        
+        rb_raise(php_exception, "PHP.eval statement failed");
+        
         return Qnil;
     }
     
@@ -140,6 +141,8 @@ static VALUE rpb_eval(VALUE class, VALUE code) {
 static VALUE rpb_include(VALUE mod, VALUE filename) {
     return Qnil;
 }
+
+
 
 static VALUE rpb_var_bridge(int argc, VALUE *argv, VALUE self) {
     
@@ -167,8 +170,7 @@ static VALUE rpb_var_bridge(int argc, VALUE *argv, VALUE self) {
     
     return Qnil;
 }
-/*ZEND_API zval* zend_call_method(zval **object_pp, zend_class_entry *obj_ce, zend_function **fn_proxy, char *function_name, int function_name_len, zval **retval_ptr_ptr, int param_count, zval* arg1, zval* arg2 TSRMLS_DC);
-*/
+
 static VALUE rpb_object_method(int argc, VALUE *argv, VALUE self) {
     
     
@@ -178,18 +180,13 @@ static VALUE rpb_object_method(int argc, VALUE *argv, VALUE self) {
     rb_scan_args(argc, argv, "1*", &rname, &args);
     
     char* method_name = (char*)rb_id2name(SYM2ID(rname));
+    // all methods are lowercase
     rpb_lower(method_name);
     
     zval* z_method_name = rpb_zval_string(method_name);
-    
     zval *retval;
     
-   // zend_class_entry* ce = Z_OBJ_HT(*obj)->get_class_entry;
     zend_class_entry *ce = Z_OBJCE(*obj);
-    
-    
-    //printf("%s.%s\n", ce->name, method_name);
-    
     
     zend_fcall_info fci = empty_fcall_info;
     zend_fcall_info_cache fcc = empty_fcall_info_cache;
@@ -219,12 +216,11 @@ static VALUE rpb_object_method(int argc, VALUE *argv, VALUE self) {
     fci.params = params;
     fci.function_name = z_method_name;
     fci.retval_ptr_ptr = &retval;
-    fci.no_separation = 1;
+    fci.no_separation = 1u;
     fci.symbol_table = NULL;
-    //zend_print_pval(fci.function_name,0);
-    //rpb_print_hashtable(fci.function_table);
     
-    if(zend_hash_find(fci.function_table, method_name, strlen(method_name)+1, (void **) &fcc.function_handler) == FAILURE) {
+    // lookup the objects function table and find them method
+    if(zend_hash_find(fci.function_table, method_name, (int)strlen(method_name)+1, (void **) &fcc.function_handler) == FAILURE) {
         rb_raise(php_exception, "Unable to find implementation for method %s::%s", ce->name, method_name);
         
     }
@@ -232,8 +228,12 @@ static VALUE rpb_object_method(int argc, VALUE *argv, VALUE self) {
     int result = zend_call_function(&fci, &fcc TSRMLS_CC);
 
     if (result == FAILURE) {
-   //     printf("failure\n");  
         rb_raise(php_exception, "Unable to call method %s::%s", ce->name, method_name);
+    }
+    
+    
+    for (int i = 0; i < fci.param_count; i++) {
+        efree(params[i]);
     }
         
     efree(params);
